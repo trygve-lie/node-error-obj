@@ -1,0 +1,30 @@
+{
+  "name": "error-obj",
+  "main": "./lib/main.js",
+  "version": "1.0.0",
+  "author": "Amedia Utvikling",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:amedia/javascript-modules.git"
+  },
+  "keywords": [
+    "error",
+    "rest"
+  ],
+  "description": "Library generating http error objects",
+  "scripts": {
+    "pretest": "eslint ./lib/*.js ./test/*.js",
+    "test": "tap --cov test/*.js"
+  },
+  "dependencies": {
+    "lodash.iserror": "3.1.1",
+    "lodash.isstring": "4.0.1",
+    "lodash.isobject": "3.0.2",
+    "error-def": "1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "2.5.3",
+    "tap": "5.7.0"
+  }
+}
