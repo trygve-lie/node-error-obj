@@ -2,7 +2,7 @@
 
 const tap   = require('tap');
 const utils = require('../lib/utils.js');
-const defs  = require('amedia-error-def');
+const defs  = require('error-def');
 const error = require('../');
 
 
