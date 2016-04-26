@@ -35,26 +35,26 @@ tap.test('error() - object should have issue method', (t) => {
 });
 
 
-tap.test('.issue() - set values - values should be set on the ".problem"', (t) => {
+tap.test('.issue() - set values - values should be set on the ".details"', (t) => {
     Object.keys(defs).forEach((name) => {
         let fnName = utils.firstLetterToLowerCase(name);
         let err = new error[fnName]();
         err.issue('foo', 'a');
         err.issue('bar', 'b');
-        t.equal(err.problem.foo, 'a');
-        t.equal(err.problem.bar, 'b');
+        t.equal(err.details.foo, 'a');
+        t.equal(err.details.bar, 'b');
     });
     t.end();
 });
 
 
-tap.test('.issue() - chain metods - values should be set on the ".problem"', (t) => {
+tap.test('.issue() - chain metods - values should be set on the ".details"', (t) => {
     Object.keys(defs).forEach((name) => {
         let fnName = utils.firstLetterToLowerCase(name);
         let err = new error[fnName]();
         err.issue('foo', 'a').issue('bar', 'b');
-        t.equal(err.problem.foo, 'a');
-        t.equal(err.problem.bar, 'b');
+        t.equal(err.details.foo, 'a');
+        t.equal(err.details.bar, 'b');
     });
     t.end();
 });

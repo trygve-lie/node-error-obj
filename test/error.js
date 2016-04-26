@@ -9,7 +9,7 @@ tap.test('constructor() - create new object with no values - should hold default
     let e = new Err();
     t.type(e, 'object');
     t.equals(e.message, '');
-    t.type(e.problem, 'object');
+    t.equals(e.details.length, 0);
     t.end();
 });
 
@@ -28,9 +28,10 @@ tap.test('constructor() - create new object with a String for "message" - should
 });
 
 
-tap.test('constructor() - create new object with a Object for "problem" - should set value on "problem"', (t) => {
+tap.test('constructor() - create new object with a Object for "problem" - should set value on "details"', (t) => {
     let e = new Err('Test Message', {test : 'test'});
-    t.equals(e.problem.test, 'test');
+    t.equals(e.details.length, 1);
+    t.equals(e.details[0].test, 'test');
     t.end();
 });
 
