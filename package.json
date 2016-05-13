@@ -24,7 +24,7 @@
     "error-def": "1.0.0"
   },
   "devDependencies": {
-    "eslint": "2.9.0",
+    "eslint": "2.10.0",
     "joi": "8.1.0",
     "tap": "5.7.1"
   }
