@@ -26,6 +26,6 @@
   "devDependencies": {
     "eslint": "2.10.2",
     "joi": "8.1.0",
-    "tap": "5.7.1"
+    "tap": "5.7.2"
   }
 }
