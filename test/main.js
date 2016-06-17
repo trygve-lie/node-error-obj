@@ -35,6 +35,16 @@ tap.test('error() - object should have issue method', (t) => {
 });
 
 
+tap.test('error() - call constructor without "new" - should construct an object', (t) => {
+    Object.keys(defs).forEach((name) => {
+        let fnName = utils.firstLetterToLowerCase(name);
+        let err = error[fnName]();
+        t.equal(err.name, name);
+    });
+    t.end();
+});
+
+
 tap.test('.issue() - set values - values should be set on the ".details"', (t) => {
     Object.keys(defs).forEach((name) => {
         let fnName = utils.firstLetterToLowerCase(name);
