@@ -12,7 +12,7 @@ tap.test('.firstLetterToLowerCase() - should turn first character to lower case'
 
 
 
-tap.test('.hasProblem() - [] - foo', (t) => {
+tap.test('.hasProblem() - [] - should return "false"', (t) => {
     let args = [];
     let length = args.length;
     let result = utils.hasProblem(args, length);
@@ -21,7 +21,7 @@ tap.test('.hasProblem() - [] - foo', (t) => {
 });
 
 
-tap.test('.hasProblem() - ["a"] - foo', (t) => {
+tap.test('.hasProblem() - ["a"] - should return "false"', (t) => {
     let args = ['a'];
     let length = args.length;
     let result = utils.hasProblem(args, length);
@@ -30,7 +30,7 @@ tap.test('.hasProblem() - ["a"] - foo', (t) => {
 });
 
 
-tap.test('.hasProblem() - [{}] - foo', (t) => {
+tap.test('.hasProblem() - [{}] - should return "true"', (t) => {
     let args = [{}];
     let length = args.length;
     let result = utils.hasProblem(args, length);
@@ -39,7 +39,7 @@ tap.test('.hasProblem() - [{}] - foo', (t) => {
 });
 
 
-tap.test('.hasProblem() - ["a", {}] - foo', (t) => {
+tap.test('.hasProblem() - ["a", {}] - should return "true"', (t) => {
     let args = ['a', {}];
     let length = args.length;
     let result = utils.hasProblem(args, length);
@@ -48,8 +48,26 @@ tap.test('.hasProblem() - ["a", {}] - foo', (t) => {
 });
 
 
-tap.test('.hasProblem() - ["a", "b", {}] - foo', (t) => {
+tap.test('.hasProblem() - ["a", "b", {}] - should return "true"', (t) => {
     let args = ['a', 'b', {}];
+    let length = args.length;
+    let result = utils.hasProblem(args, length);
+    t.equals(result, true);
+    t.end();
+});
+
+
+tap.test('.hasProblem() - [Error()] - should return "false"', (t) => {
+    let args = [new Error()];
+    let length = args.length;
+    let result = utils.hasProblem(args, length);
+    t.equals(result, false);
+    t.end();
+});
+
+
+tap.test('.hasProblem() - [Error(), {}] - foo', (t) => {
+    let args = [new Error(), {}];
     let length = args.length;
     let result = utils.hasProblem(args, length);
     t.equals(result, true);
