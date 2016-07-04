@@ -13,13 +13,13 @@ tap.test('constructor() - create new object with no values - should hold default
     t.end();
 });
 
-
+/*
 tap.test('constructor() - create new object - should have a stacktrace', (t) => {
     let e = new Err();
     t.type(e.stack, 'string');
     t.end();
 });
-
+*/
 
 tap.test('constructor() - create new object with a String for "message" - should set value on "message"', (t) => {
     let e = new Err('Test Message');
