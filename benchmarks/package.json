@@ -1,0 +1,11 @@
+{
+  "name": "error-obj-benchmarks",
+  "main": "./basic.js",
+  "version": "1.0.0",
+  "author": "Amedia Utvikling",
+  "license": "MIT",
+  "devDependencies": {
+    "fastbench": "1.0.1",
+    "verror": "1.6.1"
+  }
+}
