@@ -19,12 +19,12 @@
   },
   "dependencies": {
     "lodash.iserror": "3.1.1",
-    "lodash.isstring": "4.0.1",
     "lodash.isobject": "3.0.2",
+    "quick-format": "2.0.4",
     "error-def": "1.0.0"
   },
   "devDependencies": {
-    "eslint": "3.0.0",
+    "eslint": "2.13.1",
     "joi": "8.4.2",
     "tap": "6.1.1"
   }
