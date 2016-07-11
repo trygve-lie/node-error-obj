@@ -126,3 +126,149 @@ new ErrObj.notFoundError('Something wrong', {file : 'foo.txt'});
 Please see the section about problem objects for more information.
 
 This argument is optional.
+
+
+## Nested errors
+
+All error objects support nesting of other error objects and will produce a
+nested stack trace.
+
+```js
+var err1 = new Error('No such file or directory');
+var err2 = new ErrObj.notFoundError(err1, 'failed to stat "%s"', '/junk');
+var err3 = new ErrObj.notFoundError(err2, 'request failed');
+console.log(err3)
+```
+
+will produce:
+
+```sh
+{ NotFoundError: request failed: failed to stat "/junk": No such file or directory
+    at Object.<anonymous> (manual.test.js:39:12)
+    at Module._compile (module.js:541:32)
+    at Object.Module._extensions..js (module.js:550:10)
+    at Module.load (module.js:458:32)
+    at tryModuleLoad (module.js:417:12)
+    at Function.Module._load (module.js:409:3)
+    at Function.Module.runMain (module.js:575:10)
+    at startup (node.js:160:18)
+    at node.js:456:3
+  message: 'request failed: failed to stat "/junk": No such file or directory',
+  details: [],
+  parent: 
+   { NotFoundError: failed to stat "/junk": No such file or directory
+       at Object.<anonymous> (manual.test.js:38:12)
+       at Module._compile (module.js:541:32)
+       at Object.Module._extensions..js (module.js:550:10)
+       at Module.load (module.js:458:32)
+       at tryModuleLoad (module.js:417:12)
+       at Function.Module._load (module.js:409:3)
+       at Function.Module.runMain (module.js:575:10)
+       at startup (node.js:160:18)
+       at node.js:456:3
+     message: 'failed to stat "/junk": No such file or directory',
+     details: [],
+     parent: 
+      Error: No such file or directory
+          at Object.<anonymous> (manual.test.js:37:12)
+          at Module._compile (module.js:541:32)
+          at Object.Module._extensions..js (module.js:550:10)
+          at Module.load (module.js:458:32)
+          at tryModuleLoad (module.js:417:12)
+          at Function.Module._load (module.js:409:3)
+          at Function.Module.runMain (module.js:575:10)
+          at startup (node.js:160:18)
+          at node.js:456:3 } }
+```
+
+
+### Cause compatibility
+
+All error objects contain a `cause()` method to support printing deeper stack
+traces when logging with log frameworks such as `bole` or `bunyan`.
+
+
+## API
+
+The API is defined by the [node-error-def](https://github.com/amedia/node-error-def)
+module. 
+
+The API is:
+
+ * `.badRequestError()` - 400 Bad Request
+ * `.unauthorizedError()` - 401 Unauthorized
+ * `.paymentRequiredError()` - 402 Payment Required
+ * `.forbiddenError()` - 403 Forbidden
+ * `.notFoundError()` - 404 Not Found
+ * `.methodNotAllowedError()` - 405 Method Not Allowed
+ * `.notAcceptableError()` - 406 Not Acceptable
+ * `.proxyAuthenticationRequiredError()` - 407 Proxy Authentication Required
+ * `.requestTimeoutError()` - 408 Request Time-out
+ * `.conflictError()` - 409 Conflict
+ * `.goneError()` - 410 Gone
+ * `.lengthRequiredError()` - 411 Length Required
+ * `.preconditionFailedError()` - 412 Precondition Failed
+ * `.requestEntityTooLargeError()` - 413 Request Entity Too Large
+ * `.requesturiTooLargeError()` - 414 Request-URI Too Large
+ * `.unsupportedMediaTypeError()` - 415 Unsupported Media Type
+ * `.requestedRangeNotSatisfiableError()` - 416 Requested Range Not Satisfiable
+ * `.expectationFailedError()` - 417 Expectation Failed
+ * `.imATeapotError()` - 418 I'm a teapot
+ * `.unprocessableEntityError()` - 422 Unprocessable Entity
+ * `.lockedError()` - 423 Locked
+ * `.failedDependencyError()` - 425 Unordered Collection
+ * `.unorderedCollectionError()` - 425 Unordered Collection
+ * `.upgradeRequiredError()` - 426 Upgrade Required
+ * `.preconditionRequiredError()` - 428 Precondition Required
+ * `.tooManyRequestsError()` - 429 Too Many Requests
+ * `.requestHeaderFieldsTooLargeError()` - 431 Too Many Requests
+ * `.internalServerError()` - 500 Internal Server Error
+ * `.notImplementedError()` - 501 Not Implemented
+ * `.badGatewayError()` - 502 Bad Gateway
+ * `.serviceUnavailableError()` - 503 Service Unavailable
+ * `.gatewayTimeoutError()` - 504 Gateway Time-out
+ * `.httpVersionNotSupportedError()` - 505 HTTP Version Not Supported
+ * `.variantAlsoNegotiatesError()` - 506 Variant Also Negotiates
+ * `.insufficientStorageError()` - 507 Insufficient Storage
+ * `.bandwidthLimitExceededError()` - 509 Bandwidth Limit Exceeded
+ * `.networkAuthenticationRequiredError()` - 511 Network Authentication Required
+ * `.badDigestError()` - 400 Bad Request
+ * `.badMethodError()` - 400 Bad Request
+ * `.internalError()` - 500 Internal Server Error
+ * `.invalidArgumentError()` - 409 Conflict
+ * `.invalidContentError()` - 400 Bad Request
+ * `.invalidCredentialsError()` - 401 Unauthorized
+ * `.invalidHeaderError()` - 400 Bad Request
+ * `.invalidVersionError()` - 400 Bad Request
+ * `.missingParameterError()` - 409 Conflict
+ * `.notAuthorizedError()` - 403 Forbidden
+ * `.requestExpiredError()` - 400 Bad Request
+ * `.requestThrottledError()` - 429 Too Many Requests
+ * `.resourceNotFoundError()` - 404 Not Found
+ * `.wrongAcceptError()` - 406 Not Acceptable
+ * `.validationError()` - 400 Bad Request
+
+
+## License 
+
+The MIT License (MIT)
+
+Copyright (c) 2016 - Amedia Utvikling
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
