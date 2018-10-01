@@ -1,4 +1,7 @@
 ---
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/trygve-lie/node-error-obj.svg)](https://greenkeeper.io/)
+
 Team: Front
 Stack: Node
 
